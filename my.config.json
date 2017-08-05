@@ -1,0 +1,8 @@
+{
+    "webpackConfigPath": "webpack.config.test.js",
+    "buildPath": "/testDist",
+    "sourcePath": "testSrc",
+    "runPath": "dev",
+    "entryPath": "/app/main.js",
+    "commonsPath":"/app/assest/js/commons.js"
+}
