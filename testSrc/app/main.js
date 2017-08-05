@@ -1,20 +1,5 @@
-function formatName(user) {
-  return user.firstName + ' ' + user.lastName;
-}
+import home from './pager/home/home.js';
+import ReactRouter from 'react-router';
 
-const user = {
-  firstName: 'Harper',
-  lastName: 'Perez'
-};
 
-const element = (
-  <h1>
-    Hello, {formatName(user)}!
-  </h1>
-);
-
-ReactDom.render(
-  element,
-  document.getElementById('root')
-);
-console.log(element);
+console.log('loading ... ', home.module, ReactRouter);

@@ -2,6 +2,7 @@
 // path.resolve(__dirname, 'dist')
 let webpack = require('webpack');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
+let ExtractTextPlugin = require('extract-text-webpack-plugin');
 // shell : npm run webpackTest
 module.exports = {
     entry: {
@@ -17,24 +18,38 @@ module.exports = {
             test: /\.js|jsx$/,
             use: 'babel-loader?presets[]=es2015,presets[]=react,presets[]=stage-0'
         }, {
-            test: /\.css$/,
-            use: ['style-loader', 'css-loader']
+            test: /\.(less|scss|css)$/,
+            //use: ['style-loader', 'css-loader', 'less-loader']
+            use: ExtractTextPlugin.extract({
+                use: ['css-loader', 'less-loader', 'sass-loader'],
+                fallback: 'style-loader'
+            })
         }, {
             test: /\.(png|svg|jpg|gif)$/,
             use: ['file-loader']
         }]
     },
     plugins: [
+        // 加载全局依赖库
+        new webpack.ProvidePlugin({
+            _: 'lodash',
+            jQuery: "jquery",
+            $: "jquery",
+            React: "react",
+            ReactDom: "react-dom"
+        }),
+        // 将js文件里引入的css文件抽取为公共的css 
+        new ExtractTextPlugin({
+            filename: 'index.css',
+            disable: false,
+            allChunks: true,
+        }),
+        // 打包js加入index
         new HtmlWebpackPlugin({
             //filename: 'index',
             template: 'testSrc/index.html',
             inject: 'body',
-            favicon: 'testSrc/app/asset/images/favicon.png',
-        }),
-        new webpack.ProvidePlugin({
-            //$: "jquery",
-            React: "react",
-            ReactDom: "react-dom"
+            favicon: 'testSrc/app/asset/images/favicon.png'
         })
     ]
 };

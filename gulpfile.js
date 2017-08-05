@@ -12,7 +12,7 @@ let pathOp = {
     entry: root + '/app/app.js',
     js: root + '/app/**/*.js',
     dist: dist,
-    copy: [root + '/app/**/**.html'],
+    copy: [root + '/app/**/**.html', root + '/app/asset/**/**'],
     images: [root + '/app/assest/**/*'],
     less: [root + '/**/**.less'],
     css: [root + '/**/**.css', root + '/**/**.scss'],
@@ -20,7 +20,7 @@ let pathOp = {
         css: dist + '/assest/'
     }
 };
-// cnpm  install --save-dev babel-preset-2015
+// cnpm  install --save-dev bootstrap
 
 gulp.task('copy', function() {
     return gulp.src(pathOp.copy, {
@@ -30,10 +30,10 @@ gulp.task('copy', function() {
 
 // 定义 less 任务
 gulp.task('less', function() {
-    gulp.src(pathOp.less)
-        .pipe(less())
-        .pipe(gulp.dest(pathOp.static.css))
-        .pipe(connect.reload());
+    // gulp.src(pathOp.less)
+    //     .pipe(less())
+    //     .pipe(gulp.dest(pathOp.static.css))
+    //     .pipe(connect.reload());
 });
 
 gulp.task('watch', function() {
@@ -42,6 +42,10 @@ gulp.task('watch', function() {
     // 当js文件modify时，触发webpack任务
     gulp.watch(pathOp.js, ['webpack']);
     //gulp.watch(pathOp.home, ['webpack']);
+});
+
+gulp.task('reload', function() {
+    connect.reload();
 });
 
 gulp.task('webserver', function() {
