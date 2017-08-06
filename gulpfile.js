@@ -12,7 +12,7 @@ let pathOp = {
     entry: root + '/app/app.js',
     js: root + '/app/**/*.js',
     dist: dist,
-    copy: [root + '/app/**/**.html', root + '/app/asset/**/**'],
+    copy: [root + '/app/asset/**/**'],// root + '/app/**/**.html',
     images: [root + '/app/assest/**/*'],
     less: [root + '/**/**.less'],
     css: [root + '/**/**.css', root + '/**/**.scss'],
@@ -58,6 +58,9 @@ gulp.task('webserver', function() {
 gulp.task('webpack', function(done) {
     webpack(config, function(err, stats) {
         //console.log(err, stats);
+        if(err){
+          console.erroe(err);
+        }
         done(); //异步任务的关键之处，如果没有这行，任务会一直阻塞
     });
 });

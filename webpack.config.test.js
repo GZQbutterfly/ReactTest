@@ -15,7 +15,10 @@ module.exports = {
     },
     module: {
         rules: [{
-            test: /\.js|jsx$/,
+            test: /\.(html|htm)$/,
+            use: 'raw-loader'
+        }, {
+            test: /\.(js|jsx)$/,
             use: 'babel-loader?presets[]=es2015,presets[]=react,presets[]=stage-0'
         }, {
             test: /\.(less|scss|css)$/,
@@ -38,7 +41,7 @@ module.exports = {
             React: "react",
             ReactDom: "react-dom"
         }),
-        // 将js文件里引入的css文件抽取为公共的css 
+        // 将js文件里引入的css文件抽取为公共的css
         new ExtractTextPlugin({
             filename: 'index.css',
             disable: false,
