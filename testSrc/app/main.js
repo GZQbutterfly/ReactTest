@@ -1,7 +1,9 @@
-import home from './pager/home/home.js';
-import ReactRouter from 'react-router';
+import router from './pager/router/router.js';
 import './asset/css/layout.less';
+import BasicExample from './pager/basicExample/basicExample.js';
 
 
-
-console.log('loading ... ', home.module, ReactRouter);
+ReactDom.render(
+    router,
+    document.getElementById('app')
+);

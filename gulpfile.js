@@ -20,7 +20,7 @@ let pathOp = {
         css: dist + '/assest/'
     }
 };
-// cnpm  install --save-dev bootstrap
+// cnpm install --save-dev react-router-dom
 
 gulp.task('copy', function() {
     return gulp.src(pathOp.copy, {

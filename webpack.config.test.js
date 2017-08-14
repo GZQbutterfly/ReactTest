@@ -6,8 +6,7 @@ let ExtractTextPlugin = require('extract-text-webpack-plugin');
 // shell : npm run webpackTest
 module.exports = {
     entry: {
-        main: __dirname + '/testSrc/app/main.js',
-        commons: __dirname + '/testSrc/app/asset/js/commons.js'
+        main: [ __dirname + '/testSrc/app/asset/js/commons.js', __dirname + '/testSrc/app/main.js']
     },
     output: {
         path: __dirname + '/testDist',
